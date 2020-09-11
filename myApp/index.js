@@ -16,10 +16,22 @@ personas2.map(persona=>console.log(`El bmi de ${persona.name} es: ${bmi(persona.
 
 console.log(`suma : ${operaciones.suma(1,3)}`);
 
-const archivo = fs.createWriteStream("./files/bmi.txt");
+const archivo = fs.createWriteStream("./files/bmi.txt",{'flags':'a'});
 archivo.once("open",(f)=>{
     datos.map(persona=>archivo.write(`\n El bmi de ${persona.name} es: ${bmi(persona.weigth,persona.heigth)} `));
 
 });
 
+fs.readFile("./files/oscar_age_female.csv","utf8",(err,data)=>{
+    if (err)
+       return console.log(err.message)
+    //console.log(data);
+    const lineas =data.split("\n");
+    lineas.map(linea =>{
+        const columnas = linea.split(",");
+        console.log(columnas[3]);
+    });
+
+    
+});
 
